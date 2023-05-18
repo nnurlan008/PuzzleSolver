@@ -467,15 +467,17 @@ def plot():
 
 def main():
     initial_state, goal_state = create_states()
-    if goal_state == goalState and len(initial_state) <= 4:
-        if check_solvability(initial_state):
-            print("The puzzle is solvable.")
-        else: 
-            print("The puzzle is unsolvable.")
-            sys.exit()
-    else: print("Since the goal state is different" 
-                "the solvability check is not done. \n" 
-                "If the puzzle is unsolvable, the system will exit after some 1 hour:)")
+    if len(initial_state) <= 4:
+        if goal_state == goalState:
+            if check_solvability(initial_state):
+                print("The puzzle is solvable.")
+            else: 
+                print("The puzzle is unsolvable.")
+                sys.exit()
+        else: print("Since the goal state is different" 
+                    "the solvability check is not done. \n" 
+                    "If the puzzle is unsolvable, the system will exit after some 1 hour:)")
+    else: print("Solvability check cannot be done for this puzzle")
 
     algo = get_algo()
     #print_state(initial_state)
