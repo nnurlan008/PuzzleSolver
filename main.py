@@ -277,8 +277,7 @@ def create_states():
     print("Enter number of rows (=columns) in input or press Enter for 8-puzzle:")
     try:
         row_number = input() or int(3)
-        row_number = int(row_number
-                         )
+        row_number = int(row_number)
         if row_number <= 0:
             print("Invalid number for rows")
             raise ValueError
@@ -440,23 +439,23 @@ def plot():
     print("time3")
     print(time3)
 
-    plt.plot(depth_array[0:-1], nodes_array1, marker='p', label='Uniform Cost Search')
-    plt.plot(depth_array, nodes_array2, marker='p', label='Misplaced')
-    plt.plot(depth_array, nodes_array3, marker='p', label='Manhattan')
+    plt.plot(depth_array[0:-1], time1, marker='p', label='Uniform Cost Search')
+    plt.plot(depth_array, time2, marker='p', label='Misplaced')
+    plt.plot(depth_array, time3, marker='p', label='Manhattan')
     plt.xlabel("Solution Depth g(n)")
-    plt.ylabel("Expanded Nodes")
-    plt.title("Expanded Nodes vs Solution depth")
+    #plt.ylabel("Expanded Nodes")
+    #plt.title("Expanded Nodes vs Solution depth")
     
     #plt.ylabel("Maximum Queue Size")
     #plt.title("Maximum Queue Size vs Solution depth")
 
-    #plt.ylabel("Time in seconds")
-    #plt.title("Time vs Solution depth")
+    plt.ylabel("Time in seconds")
+    plt.title("Time vs Solution depth")
     plt.legend(loc="upper left")
     plt.grid()
     plt.margins(x=0, y=0)
     plt.xticks(depth_array)
-    plt.yticks([*range(0, 60000, 4000)])
+    plt.yticks([*range(0, 180000, 10000)])
     plt.rc('xtick', labelsize=20) 
     plt.rc('ytick', labelsize=20) 
 
@@ -468,7 +467,7 @@ def plot():
 
 def main():
     initial_state, goal_state = create_states()
-    if goal_state == goalState:
+    if goal_state == goalState and len(initial_state) <= 4:
         if check_solvability(initial_state):
             print("The puzzle is solvable.")
         else: 
